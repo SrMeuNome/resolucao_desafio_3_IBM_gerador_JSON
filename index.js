@@ -1,8 +1,10 @@
-htmlToJson = require('html-to-json')
+const htmlToJson = require('html-to-json')
+const { encode } = require('querystring')
 
-function criarJSON(link, nameFile) {
+function criarJSON(link, nameFile, options) {
+    let encode = options.encode !== undefined ? options.encode : 'utf8'
     let fs = require('fs')
-    let html = htmlToJson.request(link,
+    let html = htmlToJson.request({ url: link, encoding: encode },
         {
             title: ['meta[property]', function ($meta) {
                 if ($meta.attr('property').localeCompare('og:title') === 0)
