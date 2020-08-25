@@ -13,7 +13,9 @@ function criarJSON(link, nameFile) {
                     return $meta.attr('content')
             }],
             body: ['p', function ($p) {
-                return $p.text().match(/[^\t]/g).join('') //.join('') transformar um array de string em string
+                if ($p.text()) {
+                    return $p.text().match(/[^\t]/g).join('') //.join('') transformar um array de string em string
+                }
             }],
             type: ['meta[property]', function ($meta) {
                 if ($meta.attr('property').localeCompare('og:type') === 0)
