@@ -1,8 +1,8 @@
 const htmlToJson = require('html-to-json')
 const { encode } = require('querystring')
 
-function criarJSON(link, nameFile, options) {
-    let encode = options.encode !== undefined ? options.encode : 'utf8'
+function criarJSON(link, nameFile, typeEncode) {
+    let encode = (typeof typeEncode !== 'undefined') ? typeEncode : 'utf8'
     let fs = require('fs')
     let html = htmlToJson.request({ url: link, encoding: encode },
         {
@@ -43,3 +43,8 @@ function criarJSON(link, nameFile, options) {
         }
     )
 }
+
+//let link = 'https://olhardigital.com.br/colunistas/wagner_sanchez/post/o_futuro_cada_vez_mais_perto/78972'
+
+//criarJSON(link, 'arquivo8', 'latin1') => Encode Latin-1
+//criarJSON(link, 'arquivo8') => Encode UTF-8
